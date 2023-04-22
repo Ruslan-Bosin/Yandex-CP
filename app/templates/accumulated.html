@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ accumulated_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ accumulated_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+    <script>
+        {% if data_js %}
+        {{ accumulated_script_url | script(data_js) | safe }}
+        {% else %}
+        {{ accumulated_script_url | script() | safe }}
+        {% endif %}
+    </script>
+</head>
+<body>
+    <div class="main_container">
+        <div class="shadow container">
+            <img class="medal" src='{{ url_for("static", filename="images/medal.svg") }}' alt="medal">
+            <div>
+                <h1 class="text header">Накоплено!</h1>
+                <p class="text paragraph">Время получать заслуженную награду!</p>
+                <a href='{{ organization_main_url }}' class="button number_button_1">
+                    <img class="img" src='{{ url_for("static", filename="images/mark.svg") }}' alt="mark">
+                    <p class="text button_text text_button_1">Готово</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+<!--<h1>Накоплено!</h1>-->
+<!--<a href="{{ organization_main_url }}">Назад</a>-->
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ organization_settings_change_picture_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ organization_settings_change_picture_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+</head>
+<body>
+<img src="{{ url_for('organization_picture_get', id=user_info['id']) }}">
+<form action="{{ organization_settings_change_picture_upload_url }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" name="upload">
+</form>
+<p id="error_message" class="error_message">{{ get_flashed_messages()[0] }}</p>
+<a href="{{ organization_settings_url }}">назад</a>
+</body>
+<script defer>
+    {% if data_js %}
+    {{ organization_settings_change_picture_script_url | script(data_js) | safe }}
+    {% else %}
+    {{ organization_settings_change_picture_script_url | script() | safe }}
+    {% endif %}
+</script>
+</html>

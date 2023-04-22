@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ client_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ client_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+    <script type="text/javascript" src='{{ url_for("static", filename="js/libs/qrcode.js") }}'></script>
+</head>
+<body onload="on_load()">
+    <div class="container">
+        <div class="qr_code_container">
+            <h1 class="text headerlvl1">Мой qr код</h1>
+            <div class="qr_code_box shadow">
+<!--                <img class="qr" src="imgs/qr.png" alt="qr">-->
+                <div id="qrcode" class="qr"></div>
+                <div class="qr_code_text_container">
+                    <h1 class="qr_code_message">{{ user_id }}</h1>
+                    <p class="text advice">Предъявите qr код или назовите цифры</p>
+                    <a class="link" href='{{ client_settings_url }}'>настройки аккаунта</a>
+                </div>
+            </div>
+        </div>
+        <div class="active_container">
+            <h1 class="text headerlvl1">Активные</h1>
+            <div class="organizations_container">
+                {% for elem in active %}
+                    <div class="organization_container shadow">
+                        <img class="organization_image" src="{{ url_for('organization_picture_get', id=elem.organization.id) }}" alt="organization_image">
+                        <div class="progress_plus_title_container">
+                            <h2 class="text headerlvl2">{{ elem.organization.title }}</h2>
+                            <div class="progress_container">
+                                <div class="progress_main">
+                                    <div class="progress" style="
+                                                            position:absolute;
+                                                            height: 100%;
+                                                            width: {{str(elem.accumulated  / elem.organization.limit * 100) + '%'}};
+                                                            background: #007AFF;
+                                                            border-radius: 5px;
+                                                            "></div>
+                                </div>
+
+                                <i class="icon">{{elem.organization.sticker}}</i>
+
+                            </div>
+                            <div class="button counter"><span class="text paragraph">{{ elem.accumulated }} из {{ elem.organization.limit }}</span></div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+    </div>
+
+<!--<h1>Клиент</h1>-->
+<!--<p>{{ user_id }}</p>-->
+<!--<div id="qrcode"></div>-->
+<!--{% for elem in active %}-->
+<!--<p>-->
+<!--    <img src="{{ url_for('organization_picture_get', id=elem.organization.id) }}">-->
+<!--    {{ elem.organization.title }} - {{ elem.accumulated }} из {{ elem.organization.limit }}-->
+<!--</p>-->
+<!--{% endfor %}-->
+<!--<a href="{{ client_settings_url }}">настройки</a>-->
+</body>
+<script defer>
+    {% if data_js %}
+    {{ client_script_url | script(data_js) | safe }}
+    {% else %}
+    {{ client_script_url | script() | safe }}
+    {% endif %}
+</script>
+</html>

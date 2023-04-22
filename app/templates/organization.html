@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ organization_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ organization_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+
+</head>
+<body onload="on_load()">
+    <div class="container">
+        <div class="organization_container">
+            <h1 class="text headerlvl1">Организация</h1>
+            <div class="organization_box shadow">
+                <a href=""><img class="organization_image" src="{{ url_for('organization_picture_get', id=user_info['id']) }}" alt="organization_image"></a>
+<!--                <img class="organization_image" src="{{ url_for('organization_picture_get', id=user_info['id']) }}" alt="organization_image">-->
+                <div class="organization_text_container">
+                    <h1 class="headerlvl2" id="organization_title">{{ organization_title }}</h1>
+                    <p class="text advice">Попросите клиента назвать код и введите его</p>
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form_container">
+                            {{ form.id(class="id_field code_input", type="text", placeholder="код") }}
+<!--                            <input type="text" placeholder="код" class="code_input">-->
+                            <button id="submit_button" class="submit" type="submit">
+                                <img src='{{ url_for("static", filename="images/long_arrow.png") }}' alt="">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clients_container">
+            <div class="first_line">
+                <h1 class="text headerlvl1">Клиенты</h1>
+                <a href='{{ organization_settings_url }}' class="settings">
+                    <img class="settings_icon" src='{{ url_for("static", filename="images/settings_icon.png") }}' alt="settings">
+                </a>
+            </div>
+            <div class="clients">
+                {% for elem in clients %}
+                    <div class="client_container shadow">
+                        <div class="progress_plus_title_container">
+                            <h2 class="text headerlvl2">{{ elem.client.name if elem.client.is_private == False else "Имя скрыто" }}</h2>
+
+                            <div class="progress_main">
+                                <div class="progress" style="
+                                                        position:absolute;
+                                                        height: 100%;
+                                                        width: {{str(elem.accumulated  / elem.organization.limit * 100) + '%'}};
+                                                        background: #007AFF;
+                                                        border-radius: 5px;
+                                                        ">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="button counter"><span class="text paragraph">{{ elem.accumulated }} из {{ elem.organization.limit }}</span></div>
+                    </div>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+    </div>
+<!--
+<h1>Организация</h1>
+<p>{{ organization_title }}</p>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <label>id: {{ form.id(class="id_field") }}</label>
+    {{ form.submit(id="submit_button") }}
+</form>
+<a href="{{ organization_settings_url }}">настройки</a>
+{% for elem in clients %}
+<p>{{ elem.client.name if elem.client.is_private == False else "Имя скрыто" }} - {{ elem.accumulated }} из {{ elem.organization.limit }}</p>
+{% endfor %}
+-->
+</body>
+<script defer>
+    {% if data_js %}
+    {{ organization_script_url | script(data_js) | safe }}
+    {% else %}
+    {{ organization_script_url | script() | safe }}
+    {% endif %}
+</script>
+</html>
