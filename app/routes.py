@@ -573,6 +573,10 @@ def organization():
                 return redirect(url_for("added"))
         else:
             return redirect(url_for("wrong_id"))
+    session.close()
+
+    obj = session.query(RecordModel).filter(RecordModel.organization == int(current_user._user.id)).order_by(RecordModel.accumulated.desc()).first()
+    print("IMPORTANT: ", obj.organization)
 
 
     data: [str, object] = {

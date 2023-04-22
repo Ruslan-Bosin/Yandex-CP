@@ -57,7 +57,7 @@
                                 <div class="progress" style="
                                                         position:absolute;
                                                         height: 100%;
-                                                        width: {{str(elem.accumulated  / elem.organization.limit * 100) + '%'}};
+                                                        width: {{str(elem.accumulated  / 5 * 100) + '%'}};
                                                         background: #007AFF;
                                                         border-radius: 5px;
                                                         ">
@@ -65,7 +65,7 @@
                             </div>
 
                         </div>
-                        <div class="button counter"><span class="text paragraph">{{ elem.accumulated }} из {{ elem.organization.limit }}</span></div>
+                        <div class="button counter"><span class="text paragraph">{{ elem.accumulated }} из {{ 5 }}</span></div>
                     </div>
                 {% endfor %}
 

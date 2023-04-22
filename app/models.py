@@ -34,6 +34,9 @@ class OrganizationModel(Base, SerializerMixin):
     sticker = Column(String(1), nullable=False, default="⭐")
     Record = relationship('RecordModel')
 
+    def to_dict(self):
+        return {"id": self.id, "title": self.title, "email": self.email, "limit": self.limit, "image": self.image, "sticker": self.sticker, "Record": self.Record}
+
 
 class RecordModel(Base, SerializerMixin):
     __tablename__ = 'records'
