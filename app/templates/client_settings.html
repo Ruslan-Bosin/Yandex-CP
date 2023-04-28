@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ client_settings_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ client_settings_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form_wrapper">
+            <div class="preform">
+                <h1 class="form_title">Настройки</h1>
+                <!-- <img src="Images/avatar.png" alt="avatar" class="organization_avatar"> -->
+            </div>
+            <form action="">
+                <div class="inputs_wrapper">
+                    <div class="input_container">
+                        <label class="login__label">Название:</label>
+                        <div class="line_edit_container">
+                            <a href="{{ client_settings_change_name_url }}" class="change_fill"><i class="icon long_arrow"></i></a>
+                            <i class="icon name"></i>
+                                    <input readonly value='{{ user_info["name"] }}' class="input-field" type="text" placeholder="" name="usrnm">
+                        </div>
+                    </div>
+
+                    <div class="input_container">
+                        <label class="login__label">Email:</label>
+                        <div class="line_edit_container">
+                            <a href="{{ client_settings_change_email_url }}" class="change_fill"><i class="icon long_arrow"></i></a>
+                            <i class="icon email"></i>
+                                    <input readonly value='{{ user_info["email"] }}' class="input-field" type="email" placeholder="" name="usrnm">
+                        </div>
+                    </div>
+
+                    <div class="input_container">
+                        <label class="login__label">Пароль:</label>
+                        <div class="line_edit_container">
+                            <a href="{{ client_settings_change_password_url }}" class="change_fill"><i class="icon long_arrow"></i></a>
+                            <i class="icon password"></i>
+                                    <input readonly value='{{ "•••••••••••••••" }}' class="input-field" type="password" placeholder="" name="usrnm">
+                        </div>
+                    </div>
+
+                    <div class="input_container">
+                        <label class="login__label">Приватность:</label>
+                        <div class="line_edit_container">
+                            <a href="{{ client_settings_change_privacy_url }}" class="change_fill"><i class="icon long_arrow"></i></a>
+                            <i class="icon privacy"></i>
+                                    <input readonly value='{{ "Приватный" if user_info["is_private"] else "Стандартный" }}' class="input-field" type="text" placeholder="" name="usrnm">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <span class="advice">Стандартный: ваше имя отображается у организации. Приватный: ваше имя скрыто</span>
+        <div class="buttons_container">
+                    <a href="{{ client_main_url }}" class="button number_button_2">
+                        <img src='{{ url_for("static", filename="images/arrow.svg") }}' alt="arrow">
+                        <span class="button_text text_button_2">Назад</span>
+                    </a>
+                    <a href="{{ client_logout_url }}" class="button number_button_1">
+                        <img src='{{ url_for("static", filename="images/log_out_button_icon.svg") }}' alt="log_out">
+                        <span class="button_text text_button_1">Выйти</span>
+                    </a>
+        </div>
+    </div>
+
+<!--<h1>Настройки - клиент</h1>-->
+<!--<p>{{ user_info["name"] }} <a href="{{ client_settings_change_name_url }}"> -> </a> </p>-->
+<!--<p>{{ user_info["email"] }} <a href="{{ client_settings_change_email_url }}"> -> </a> </p>-->
+<!--<p>{{ "•••••••••••••••" }} <a href="{{ client_settings_change_password_url }}"> -> </a> </p>-->
+<!--<p>{{ "Приватный" if user_info["is_private"] else "Стандартный" }} <a href="{{ client_settings_change_privacy_url }}"> -> </a> </p>-->
+<!--<a href="{{ client_main_url }}">назад</a>-->
+<!--<a href="{{ client_logout_url }}">выйти</a>-->
+</body>
+<script defer>
+    {% if data_js %}
+    {{ client_settings_script_url | script(data_js) | safe }}
+    {% else %}
+    {{ client_settings_script_url | script() | safe }}
+    {% endif %}
+</script>
+</html>

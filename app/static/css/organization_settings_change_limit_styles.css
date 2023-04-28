@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif; */
+}
+
+.end {
+    margin-top: 43px;
+    display: flex;
+    justify-content: center;
+}
+
+.alert {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    bottom: 0;
+    display: flex;
+
+    color: #FF0000;
+    text-align: center;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 16px; */
+    height: 100vh;
+    width: 100%;
+    background-color: #ebeff5;
+}
+
+.preform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    /* position: relative; */
+    width: 400px;
+    height: 292.5px;
+    background: #FFFFFF;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    padding-right: 45px;
+    padding-left: 45px;
+}
+
+.shadow {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    /* Shadow */
+
+    box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+/* .main {
+    display: flex;
+    flex-direction: column;
+} */
+
+.inputs_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+}
+
+/* form */
+
+  /* Стиль для полей ввода */
+.input-field {
+    /* position: relative; */
+    /* border-bottom: 2px solid #D4D4D4; */
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 3px;
+    padding-left: 44px;
+    padding-right: 50px;
+    width: 100%;
+    height: 47px;
+    background: #F5F5F5;
+    border-radius: 5px;
+}
+
+.input-field:active, :focus {
+    outline: 0;
+    outline-offset: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 2px solid #007AFF;
+}
+
+
+
+
+.icon {
+
+    position: absolute;
+
+    margin-top: 12px;
+    margin-right: 12px;
+    /* margin-right: 12px; */
+    height: 24px;
+    width: 24px;
+    /* text-align: center; */
+    background-repeat: no-repeat;
+    /* grid-column-start: 1;
+    grid-column-end: 2; */
+    margin-left: 12px;
+
+}
+
+.name {
+    background: url('{{ url_for("static", filename="images/name_icon.svg") }}');
+}
+
+.title_icon {
+    background: url('{{ url_for("static", filename="images/organization_name_icon.svg") }}');
+}
+
+
+.password {
+    background: url('{{ url_for("static", filename="images/password_icon.svg") }}');
+}
+
+
+.email {
+    background: url('{{ url_for("static", filename="images/mail_icon.svg") }}');
+}
+
+
+.sticker {
+    background: url('{{ url_for("static", filename="images/smile.svg") }}');
+}
+
+.limit {
+    background: url('{{ url_for("static", filename="images/limit_icon.svg") }}');
+}
+
+
+/* .change_fill:active {
+
+} */
+
+.line_edit_container {
+    display: grid;
+    position: relative;
+    width: 100%;
+}
+
+
+
+.login__label {
+    /* Poppins Regular/10 */
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 15px;
+    /* identical to box height */
+    /* Black */
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+
+
+.form_title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 45px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    /* margin-bottom: 30px; */
+
+}
+
+
+  /* Стиль для контейнеров ввода */
+.input_container {
+    margin-top: 30px;
+    width: 100%;
+    /* display: grid; */
+    grid-gap: 0px;
+}
+
+
+
+  /* Стиль для кнопки отправки данных */
+.button {
+    border-radius: 8px;
+    /* background: #007AFF; */
+    width: 150px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 100px 1fr);
+    grid-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.number_button_1 {
+    background: #007AFF;
+    border: none;
+    /* margin-right: 45px; */
+
+}
+
+.number_button_1:hover {
+    cursor: pointer;
+
+}
+
+.number_button_2 {
+    border: 3px solid #F5F5F5;
+
+}
+
+.number_button_2:hover {
+    cursor: pointer;
+
+
+}
+
+
+.img {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+.button_icon {
+    background: url("images/mark.svg");
+    height: 13px;
+    width: 16px;
+}
+
+.button_text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: center;
+
+
+}
+a {
+    text-decoration: none;
+}
+
+.text_button_1 {
+    color: #FFFFFF;
+}
+
+.text_button_2 {
+    color: #575F6E;
+}
+
+.form_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.buttons_container {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-gap: 10px;
+    display: flex;
+}
+

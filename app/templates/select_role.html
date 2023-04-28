@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ select_role_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ select_role_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+    <script>
+        {% if data_js %}
+        {{ select_role_script_url | script(data_js) | safe }}
+        {% else %}
+        {{ select_role_script_url | script() | safe }}
+        {% endif %}
+    </script>
+</head>
+<body>
+    <div class="container">
+        <p class="header">Выберите кто вы ?</p>
+        <div class="chooise">
+            <a class="rectangle"  href="{{ client_login_url }}">
+                <div class="layout">
+                    <img class="img" src='{{ url_for("static", filename="images/select_role_client.png") }}' alt="client">
+                    <p class="rectangle_text">Клиент</p>
+                </div>
+            </a>
+            <a class="rectangle" href="{{ organization_login_url }}">
+                <div class="layout">
+                    <img class="img" src='{{ url_for("static", filename="images/select_role_organization.png") }}' alt="organization">
+                    <p class="rectangle_text">Организация</p>
+                </div>
+
+            </a>
+        </div>
+    </div>
+    <a href="{{ index_url }}" class="button number_button_2">
+        <img class="img_back_button" src='{{ url_for("static", filename="images/arrow.png") }}' alt="arrow">
+        <div class="button_text text_button_2">Обратно</div>
+    </a>
+</body>
+</html>

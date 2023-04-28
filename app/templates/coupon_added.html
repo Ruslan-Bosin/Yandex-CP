@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <style>
+        {% if data_css %}
+        {{ ui_kit_styles_url | style(data_css) | safe }}
+        {{ coupon_added_styles_url | style(data_css) | safe }}
+        {% else %}
+        {{ ui_kit_styles_url | style() | safe }}
+        {{ coupon_added_styles_url | style() | safe }}
+        {% endif %}
+    </style>
+    <script>
+        {% if data_js %}
+        {{ coupon_added_script_url | script(data_js) | safe }}
+        {% else %}
+        {{ coupon_added_script_url | script() | safe }}
+        {% endif %}
+    </script>
+</head>
+<body>
+    <div class="main_container">
+        <div class="shadow container">
+            <img class="like" src='{{ url_for("static", filename="images/like.png") }}' alt="like">
+            <div>
+                <h1 class="text header">Готово!</h1>
+                <p class="text paragraph">Готово! Мы начислили купон этому клиенту!</p>
+                <a href="{{ organization_main_url }}" class="button number_button_2" style="text-decoration: none;">
+                    <img class="img" src='{{ url_for("static", filename="images/arrow.svg") }}' alt="arrow">
+                    <p class="text button_text text_button_2">Назад</p>
+                </a>
+            </div>
+        </div>
+    </div>
+<!--<h1>Готово!</h1>-->
+<!--<a href="{{ organization_main_url }}">Назад</a>-->
+</body>
+</html>
